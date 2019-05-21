@@ -12,4 +12,5 @@
     <string name="result_exact">Yup, you got it!</string>
     <string name="resetButton">Try again</string>
     <string name="resetScore">Reset score</string>
+    <string name="imageHelp">Let\'s guess when this person dies.</string>
 </resources>

@@ -2,53 +2,94 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:id="@+id/container">
+    tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:id="@+id/toolbar"/>
+        android:background="@color/colorPrimary" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/personSnap"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enterYear" />
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/yearInput"
-        android:inputType="number"/>
-    <Button
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:id="@+id/imageContainer">
+        <ImageView
+            android:id="@+id/personSnap"
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="@string/imageHelp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enterYear"
+            tools:layout_editor_absoluteX="65dp"
+            tools:layout_editor_absoluteY="195dp" />
+
+        <EditText
+            android:id="@+id/yearInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="235dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/guessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/guess"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="352dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/guess"
-        android:id="@+id/guessButton"/>
-    <Button
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/conclusion"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <View android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/resetButton"
-        android:id="@+id/resetButton"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/result"/>
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="235dp" />
+
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/hackermodeButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hackermode"
-        android:id="@+id/hackermodeButton"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/conclusion"/>
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="114dp" />
 
 </LinearLayout>

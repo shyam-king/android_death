@@ -3,14 +3,17 @@ package com.github.shyamking.deathprediction;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     int actualYear;
     Button guessButton, hackermodeButton, resetButton;
     EditText yearInput;
-    LinearLayout container;
+    LinearLayout container, imageContainer;
     TextView resultText, conclusionText;
     ImageView personSnap;
     int optimalGuesses = 7;
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     Activity activity;
     SharedPreferences settings;
     Toolbar toolbar;
+    boolean save = false;
+    boolean imageClip = false;
+    Bitmap snap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        imageContainer = findViewById(R.id.imageContainer);
 
         reset();
 
@@ -61,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int diff = Integer.valueOf(yearInput.getText().toString()) - actualYear;
                 currentGuess ++;
+                save = true;
 
                 if (diff < 0) {
                     resultText.setText(R.string.result_early);
@@ -76,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                         conclusionText.setText(R.string.conclusion_bad);
                     }
                     guessButton.setEnabled(false);
+                    save = false;
+                    imageClip = false;
                     int score = settings.getInt("score", 0);
                     score++;
                     settings.edit().putInt("score", score).apply();
@@ -83,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (currentGuess >= maxGuesses) {
                     guessButton.setEnabled(false);
+                    save = false;
+                    imageClip = false;
                     conclusionText.setText(R.string.conclusion_fail);
                 }
 
@@ -115,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 reset();
+                save = false;
+                imageClip = false;
             }
         });
     }
@@ -123,13 +137,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            personSnap.setImageBitmap(imageBitmap);
+            snap = (Bitmap) extras.get("data");
+            imageClip = true;
+            save = true;
+            personSnap.setImageBitmap(snap);
             reset();
+            imageContainer.setVisibility(View.VISIBLE);
         }
     }
 
     protected void reset() {
+        Log.d("SHYAMDEBUG", "reset()");
         currentGuess = 0;
         if(resultText !=null)
             resultText.setText("");
@@ -139,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         actualYear = (int)(1 + Math.random()*100);
         guessButton.setEnabled(true);
         container.setBackgroundColor(Color.rgb(255,255,255));
+        imageContainer.setVisibility(View.GONE);
     }
 
     @Override
@@ -167,4 +186,44 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("save", save);
+        outState.putBoolean("imageClip", imageClip);
+
+        if (save) {
+            outState.putInt("currentGuess", currentGuess);
+            outState.putInt("actualYear", actualYear);
+
+            if (imageClip) {
+                BitmapDataObject bmp = new BitmapDataObject(snap);
+                outState.putSerializable("bitmap", bmp);
+            }
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            save = savedInstanceState.getBoolean("save");
+            imageClip = savedInstanceState.getBoolean("imageClip");
+
+            if (save) {
+                currentGuess = savedInstanceState.getInt("currentGuess");
+                actualYear = savedInstanceState.getInt("actualYear");
+
+                if(imageClip) {
+                    BitmapDataObject bmp = (BitmapDataObject) savedInstanceState.getSerializable("bitmap");
+                    snap = bmp.get();
+                    personSnap.setImageBitmap(snap);
+                    imageContainer.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
 }
