@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DeathPrediction</string>
+    <string name="enterYear">Enter year</string>
+    <string name="guess">Guess</string>
+    <string name="hackermode">Practical test</string>
+    <string name="showScore">Show Score</string>
+    <string name="conclusion_good">Good work.</string>
+    <string name="conclusion_bad">You need to work harder.</string>
+    <string name="conclusion_fail">You failed this time!</string>
+    <string name="result_late">Too late!</string>
+    <string name="result_early">Too early!</string>
+    <string name="result_exact">Yup, you got it!</string>
+    <string name="resetButton">Try again</string>
+    <string name="resetScore">Reset score</string>
+</resources>
