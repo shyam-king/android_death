@@ -13,7 +13,7 @@
     </style>
 
     <style name="buttons" parent="@android:style/Widget.Button">
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_margin">4dp</item>
         <item name="android:padding">4dp</item>
         <item name="android:background">@drawable/button</item>
         <item name="android:textColor">@color/colorAccent</item>
@@ -27,10 +27,11 @@
     <style name="imageViews" >
         <item name="android:layout_margin">8dp</item>
         <item name="android:background">@drawable/image_border</item>
+        <item name="android:padding">2dp</item>
     </style>
 
     <style name="editTexts" parent="@android:style/Widget.EditText">
-
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">

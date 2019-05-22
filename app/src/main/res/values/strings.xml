@@ -1,16 +1,17 @@
 <resources>
-    <string name="app_name">DeathPrediction</string>
-    <string name="enterYear">Enter year</string>
+    <string name="app_name">Death Skill Test</string>
+    <string name="enterYear">Enter Year Of Death:</string>
     <string name="guess">Guess</string>
-    <string name="hackermode">Practical test</string>
-    <string name="showScore">Show Score</string>
+    <string name="hackermode">Guess a person\'s YOD</string>
+    <string name="showScore">Show total correct guesses</string>
     <string name="conclusion_good">Good work.</string>
     <string name="conclusion_bad">You need to work harder.</string>
-    <string name="conclusion_fail">You failed this time!</string>
+    <string name="conclusion_fail">You failed this time! The Year Of Death was: </string>
+    <string name="conclusion_image">If the person is older than their YOD, you know what to do.</string>
     <string name="result_late">Too late!</string>
     <string name="result_early">Too early!</string>
     <string name="result_exact">Yup, you got it!</string>
     <string name="resetButton">Try again</string>
-    <string name="resetScore">Reset score</string>
-    <string name="imageHelp">Let\'s guess when this person dies.</string>
+    <string name="resetScore">Reset count</string>
+    <string name="imageHelp">Try to guess when this person should die.</string>
 </resources>

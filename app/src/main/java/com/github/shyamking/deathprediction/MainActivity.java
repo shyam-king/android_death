@@ -105,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
                     save = false;
                     imageClip = false;
                     conclusionText.setText(R.string.conclusion_fail);
+                    conclusionText.append(String.valueOf(actualYear));
+                }
+
+                if (imageContainer.getVisibility() == View.VISIBLE && save == false) {
+                    conclusionText.append("\n");
+                    conclusionText.append(getString(R.string.conclusion_image));
                 }
 
                 diff = Math.abs(diff);
