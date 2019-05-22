@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -66,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
         guessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                hideKeyboard(activity);
+
+                if (yearInput.getText().toString().isEmpty()) {
+                    Toast.makeText(activity, "Enter a year!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 int diff = Integer.valueOf(yearInput.getText().toString()) - actualYear;
                 currentGuess ++;
                 save = true;
@@ -133,6 +142,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
@@ -147,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void reset() {
-        Log.d("SHYAMDEBUG", "reset()");
         currentGuess = 0;
         if(resultText !=null)
             resultText.setText("");

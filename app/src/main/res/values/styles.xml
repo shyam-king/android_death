@@ -6,6 +6,39 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:button">@style/buttons</item>
+        <item name="android:fontFamily">roboto_regular</item>
+        <item name="actionBarTheme">@style/AppTheme.ActionBarTheme</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="buttons" parent="@android:style/Widget.Button">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="textViews" parent="@android:style/Widget.TextView">
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="imageViews" >
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">@drawable/image_border</item>
+    </style>
+
+    <style name="editTexts" parent="@android:style/Widget.EditText">
+
+    </style>
+
+    <style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionOverflowButtonStyle">@style/overflowButtonStyle</item>
+    </style>
+
+    <style name="overflowButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/colorAccent</item>
     </style>
 
 </resources>

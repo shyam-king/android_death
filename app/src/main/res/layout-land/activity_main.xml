@@ -10,7 +10,9 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        app:titleTextColor="@color/colorAccent"
         android:layout_width="match_parent"
+        android:theme="@style/AppTheme.ActionBarTheme"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary" />
     <LinearLayout
@@ -27,11 +29,13 @@
             <ImageView
                 android:id="@+id/personSnap"
                 android:layout_width="200dp"
+                style="@style/imageViews"
                 android:layout_gravity="center"
                 android:layout_height="200dp" />
 
             <TextView
                 android:layout_width="wrap_content"
+                style="@style/textViews"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/imageHelp" />
@@ -50,29 +54,26 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/enterYear"
-                    tools:layout_editor_absoluteX="65dp"
-                    tools:layout_editor_absoluteY="195dp" />
+                    style="@style/textViews"
+                    android:text="@string/enterYear" />
 
                 <EditText
                     android:id="@+id/yearInput"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    tools:layout_editor_absoluteX="56dp"
-                    tools:layout_editor_absoluteY="235dp"
                     android:layout_weight="1"/>
 
                 <Button
                     android:id="@+id/guessButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/guess"
-                    tools:layout_editor_absoluteX="128dp"
-                    tools:layout_editor_absoluteY="352dp" />
+                    style="@style/buttons"
+                    android:text="@string/guess"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/result"
+                style="@style/textViews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
@@ -80,6 +81,7 @@
                 android:id="@+id/conclusion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/textViews"
                 android:layout_gravity="center"/>
 
             <View android:layout_width="match_parent"
@@ -89,18 +91,16 @@
             <Button
                 android:id="@+id/resetButton"
                 android:layout_width="match_parent"
+                style="@style/buttons"
                 android:layout_height="wrap_content"
-                android:text="@string/resetButton"
-                tools:layout_editor_absoluteX="74dp"
-                tools:layout_editor_absoluteY="235dp" />
+                android:text="@string/resetButton" />
 
             <Button
                 android:id="@+id/hackermodeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hackermode"
-                tools:layout_editor_absoluteX="81dp"
-                tools:layout_editor_absoluteY="114dp" />
+                style="@style/buttons"
+                android:text="@string/hackermode" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
