@@ -47,6 +47,34 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/setContainer">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/textViews"
+                    android:text="@string/enterCorrectYear"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="195dp" />
+
+                <EditText
+                    android:id="@+id/correctYearInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    style="@style/editTexts"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/setButton"
+                    style="@style/buttons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0dp"

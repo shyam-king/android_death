@@ -28,9 +28,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     int actualYear;
-    Button guessButton, hackermodeButton, resetButton;
-    EditText yearInput;
-    LinearLayout container, imageContainer;
+    Button guessButton, hackermodeButton, resetButton, setButton;
+    EditText yearInput, correctYearInput;
+    LinearLayout container, imageContainer, setContainer;
     TextView resultText, conclusionText;
     ImageView personSnap;
     int optimalGuesses = 7;
@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         imageContainer = findViewById(R.id.imageContainer);
+        setContainer = findViewById(R.id.setContainer);
+        setButton = findViewById(R.id.setButton);
+        correctYearInput = findViewById(R.id.correctYearInput);
 
         reset();
 
@@ -146,6 +149,26 @@ public class MainActivity extends AppCompatActivity {
                 imageClip = false;
             }
         });
+
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideKeyboard(activity);
+                String in = correctYearInput.getText().toString();
+                if (in.isEmpty()) {
+                    Toast.makeText(activity, "Please provide proper input!", Toast.LENGTH_SHORT).show();
+                }
+                else if (Integer.valueOf(in) > 100) {
+                    Toast.makeText(activity, "Please enter an age between 1 - 100!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    actualYear = Integer.valueOf(in);
+                    save = true;
+                    setContainer.setVisibility(View.GONE);
+                    guessButton.setEnabled(true);
+                }
+            }
+        });
     }
 
     private static void hideKeyboard(Activity activity) {
@@ -168,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
             personSnap.setImageBitmap(snap);
             reset();
             imageContainer.setVisibility(View.VISIBLE);
+            setContainer.setVisibility(View.GONE);
+            guessButton.setEnabled(true);
         }
     }
 
@@ -179,9 +204,10 @@ public class MainActivity extends AppCompatActivity {
             conclusionText.setText("");
         }
         actualYear = (int)(1 + Math.random()*100);
-        guessButton.setEnabled(true);
+        guessButton.setEnabled(false);
         container.setBackgroundColor(Color.rgb(255,255,255));
         imageContainer.setVisibility(View.GONE);
+        setContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -246,6 +272,9 @@ public class MainActivity extends AppCompatActivity {
                     personSnap.setImageBitmap(snap);
                     imageContainer.setVisibility(View.VISIBLE);
                 }
+
+                setContainer.setVisibility(View.GONE);
+                guessButton.setEnabled(true);
             }
         }
     }

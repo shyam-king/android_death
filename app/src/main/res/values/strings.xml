@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Death Skill Test</string>
-    <string name="enterYear">Enter Year Of Death:</string>
+    <string name="enterYear">Year Of Death:</string>
+    <string name="enterCorrectYear">Correct Year of Death:</string>
     <string name="guess">Guess</string>
+    <string name="set">Set</string>
     <string name="hackermode">Guess a person\'s YOD</string>
     <string name="showScore">Show total correct guesses</string>
     <string name="conclusion_good">Good work.</string>
